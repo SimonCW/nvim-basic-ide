@@ -1,5 +1,5 @@
+vim.opt.clipboard = nil--"unnamedplus"               -- allows neovim to access the system clipboard
 vim.opt.backup = false                          -- creates a backup file
-vim.opt.clipboard = "unnamedplus"               -- allows neovim to access the system clipboard
 vim.opt.cmdheight = 1                           -- more space in the neovim command line for displaying messages
 vim.opt.completeopt = { "menuone", "noselect" } -- mostly just for cmp
 vim.opt.conceallevel = 0                        -- so that `` is visible in markdown files
@@ -25,6 +25,7 @@ vim.opt.shiftwidth = 2                          -- the number of spaces inserted
 vim.opt.tabstop = 2                             -- insert 2 spaces for a tab
 vim.opt.cursorline = true                       -- highlight the current line
 vim.opt.number = true                           -- set numbered lines
+vim.opt.relativenumber = true                   -- set relative numbered lines
 vim.opt.laststatus = 3                          -- only the last window will always have a status line
 vim.opt.showcmd = false                         -- hide (partial) command in the last line of the screen (for performance)
 vim.opt.ruler = false                           -- hide the line and column number of the cursor position
@@ -34,6 +35,7 @@ vim.opt.wrap = false                            -- display lines as one long lin
 vim.opt.scrolloff = 8                           -- minimal number of screen lines to keep above and below the cursor
 vim.opt.sidescrolloff = 8                       -- minimal number of screen columns to keep to the left and right of the cursor if wrap is `false`
 vim.opt.guifont = "monospace:h17"               -- the font used in graphical neovim applications
+vim.o.termguicolors = true
 vim.opt.fillchars.eob=" "                       -- show empty lines at the end of a buffer as ` ` {default `~`}
 vim.opt.shortmess:append "c"                    -- hide all the completion messages, e.g. "-- XXX completion (YYY)", "match 1 of 2", "The only match", "Pattern not found"
 vim.opt.whichwrap:append("<,>,[,],h,l")         -- keys allowed to move to the previous/next line when the beginning/end of line is reached

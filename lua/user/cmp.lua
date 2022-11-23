@@ -41,6 +41,7 @@ local kind_icons = {
 	Event = "",
 	Operator = "",
 	TypeParameter = "",
+  Octoface = "",
 }
 
 cmp.setup({
@@ -49,6 +50,9 @@ cmp.setup({
 			luasnip.lsp_expand(args.body) -- For `luasnip` users.
 		end,
 	},
+  -- completion = {
+  --   autocomplete = true,
+  -- },
 
 	mapping = cmp.mapping.preset.insert({
 		["<C-k>"] = cmp.mapping.select_prev_item(),
@@ -96,23 +100,35 @@ cmp.setup({
 		fields = { "kind", "abbr", "menu" },
 		format = function(entry, vim_item)
 			vim_item.kind = kind_icons[vim_item.kind]
+      if entry.source.name == "copilot" then
+        vim_item.kind = kind_icons["Octoface"]
+      end
 			vim_item.menu = ({
-				nvim_lsp = "",
-				nvim_lua = "",
-				luasnip = "",
-				buffer = "",
-				path = "",
-				emoji = "",
+				copilot = "CoPi",
+				nvim_lsp = "LSP",
+				buffer = "BUF",
+				path = "PTH",
+				nvim_lua = "LUA",
+				luasnip = "LUASNIP",
+				emoji = "EMO",
 			})[entry.source.name]
 			return vim_item
 		end,
 	},
 	sources = {
 		{ name = "nvim_lsp" },
+		{ name = "buffer" },
+    { name = "copilot",
+      max_item_count = 3,
+      trigger_characters = {
+        { ".", ":", "(", "'", '"', "[", ",", "#", "*", "@", "|", "=", "-", "{", "/", "\\", "+", "?" },
+      },
+      group_index = 2,
+      },
+		{ name = "path" },
 		{ name = "nvim_lua" },
 		{ name = "luasnip" },
 		{ name = "buffer" },
-		{ name = "path" },
 	},
 	confirm_opts = {
 		behavior = cmp.ConfirmBehavior.Replace,
